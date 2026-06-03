@@ -1,0 +1,237 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply font-sans bg-drylic-frost text-[#1a2a3a] overflow-x-hidden;
+  }
+}
+
+@layer utilities {
+  .animate-delay-100 { animation-delay: 100ms; }
+  .animate-delay-200 { animation-delay: 200ms; }
+  .animate-delay-300 { animation-delay: 300ms; }
+  .animate-delay-400 { animation-delay: 400ms; }
+}
+/* ===== Apple Motion Base ===== */
+
+.ap-reveal {
+  opacity: 0;
+  transform: translateY(30px) scale(0.98);
+  filter: blur(10px);
+  transition: all 1.1s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform, opacity, filter;
+}
+
+.ap-reveal.ap-visible {
+  opacity: 1;
+  transform: translateY(0px) scale(1);
+  filter: blur(0px);
+}
+
+/* Stagger system */
+.ap-stagger > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.ap-visible .ap-stagger > * {
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+.ap-visible .ap-stagger > *:nth-child(1) { transition-delay: 0.05s; }
+.ap-visible .ap-stagger > *:nth-child(2) { transition-delay: 0.12s; }
+.ap-visible .ap-stagger > *:nth-child(3) { transition-delay: 0.18s; }
+.ap-visible .ap-stagger > *:nth-child(4) { transition-delay: 0.24s; }
+
+/* Hover Apple Card */
+.ap-card {
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1),
+              box-shadow 0.5s ease;
+  will-change: transform;
+}
+
+.ap-card:hover {
+  transform: translateY(-10px) scale(1.02);
+}
+
+/* Glow premium */
+.ap-glow {
+  position: relative;
+}
+
+.ap-glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    600px circle at var(--x, 50%) var(--y, 50%),
+    rgba(255,255,255,0.35),
+    transparent 40%
+  );
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.ap-glow:hover::after {
+  opacity: 1;
+}html {
+  scroll-behavior: smooth;
+}
+
+/* suaviza rendering general */
+body {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}.ap-fade {
+  opacity: 0;
+  transform: translateY(40px);
+  filter: blur(12px);
+  transition: all 1.1s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform, opacity, filter;
+}
+
+.ap-fade.ap-show {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* stagger children */
+.ap-stagger > * {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: all 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.ap-show .ap-stagger > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ap-show .ap-stagger > *:nth-child(1) { transition-delay: 0.05s; }
+.ap-show .ap-stagger > *:nth-child(2) { transition-delay: 0.12s; }
+.ap-show .ap-stagger > *:nth-child(3) { transition-delay: 0.18s; }
+.ap-show .ap-stagger > *:nth-child(4) { transition-delay: 0.24s; }
+/* =========================
+   APPLE MOTION SYSTEM
+   ========================= */
+
+/* Smooth global feel */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Base animation curve (Apple-like) */
+:root {
+  --ease-apple: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Fade up system */
+.appear {
+  opacity: 0;
+  transform: translateY(24px);
+  filter: blur(10px);
+  transition:
+    opacity 0.9s var(--ease-apple),
+    transform 0.9s var(--ease-apple),
+    filter 0.9s var(--ease-apple);
+  will-change: transform, opacity, filter;
+}
+
+.appear.in-view {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* Card micro lift */
+.apple-card {
+  transition:
+    transform 0.6s var(--ease-apple),
+    box-shadow 0.6s var(--ease-apple);
+  will-change: transform;
+}
+
+.apple-card:hover {
+  transform: translateY(-10px) scale(1.02);
+}
+
+/* Light sweep effect (Apple-style) */
+.apple-sweep {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(255,255,255,0.35),
+    transparent 70%
+  );
+  transform: translateX(-120%);
+  transition: transform 0.9s var(--ease-apple);
+  pointer-events: none;
+}
+
+.apple-card:hover .apple-sweep {
+  transform: translateX(120%);
+}
+
+/* Radial hover glow */
+.apple-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--x, 50%) var(--y, 50%),
+    rgba(255,255,255,0.8),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.apple-card:hover .apple-glow {
+  opacity: 1;
+}html {
+  scroll-behavior: smooth;
+}html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: rgba(39, 76, 119, 0.16);
+}.reveal-section {
+  opacity: 0;
+  transform: translateY(50px);
+  filter: blur(14px);
+
+  transition:
+    opacity 1.1s cubic-bezier(0.16,1,0.3,1),
+    transform 1.1s cubic-bezier(0.16,1,0.3,1),
+    filter 1.1s cubic-bezier(0.16,1,0.3,1);
+
+  will-change: transform, opacity, filter;
+}
+
+.reveal-section.revealed {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
