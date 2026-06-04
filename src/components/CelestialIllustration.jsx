@@ -56,29 +56,49 @@ export default function CelestialIllustration() {
       {/* stars */}
       {stars.map((s, i) => (
         <div
-          key={i}
-          style={{
-            position: 'absolute',
-            top: s.top,
-            left: s.left,
-            width: s.size,
-            height: s.size,
-            animation: `twinkle ${s.dur} ${s.delay} ease-in-out infinite`,
-            zIndex: 10,
-            pointerEvents: 'none',
-          }}
-        >
-          <div
-            style={{
-              width: '100%',
-              height: '100%',
-              borderRadius: '50%',
-              background: s.color,
-              boxShadow: `0 0 ${s.size * 2}px ${s.color}55`,
-              opacity: 0.95,
-            }}
-          />
-        </div>
+  key={i}
+  className="absolute pointer-events-none"
+  style={{
+    top: s.top,
+    left: s.left,
+    width: s.size,
+    height: s.size,
+    animation: `twinkle ${s.dur} ${s.delay} ease-in-out infinite`,
+    zIndex: 10,
+  }}
+>
+  {/* DESKTOP / TABLET */}
+  <div className="hidden sm:block w-full h-full">
+    <div
+      style={{
+        width: '100%',
+        height: '100%',
+        color: s.color,
+        fontSize: s.size,
+        textShadow: `0 0 ${s.size * 2}px ${s.color}88`,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      ✦
+    </div>
+  </div>
+
+  {/* MOBILE (más limpio y nítido) */}
+  <div className="block sm:hidden w-full h-full">
+    <div
+      style={{
+        width: s.size * 0.35,
+        height: s.size * 0.35,
+        background: s.color,
+        borderRadius: '50%',
+        boxShadow: `0 0 6px ${s.color}66`,
+        margin: 'auto',
+      }}
+    />
+  </div>
+</div>
       ))}
 
       {/* baby image */}
