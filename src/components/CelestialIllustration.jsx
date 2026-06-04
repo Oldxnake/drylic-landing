@@ -39,19 +39,21 @@ export default function CelestialIllustration() {
 
       {/* estrellas titilantes */}
       {stars.map((s, i) => (
-        <div
-          key={i}
-          style={{
-            position: 'absolute',
-            top: s.top,
-            left: s.left,
-            width: s.size,
-            height: s.size,
-            color: s.color,
-            animation: `twinkle ${s.dur} ${s.delay} ease-in-out infinite`,
-            fontSize: s.size,
-            lineHeight: 1,
-            userSelect: 'none',
+  <div
+    key={i}
+    style={{
+      position: 'absolute',
+      top: s.top,
+      left: s.left,
+      width: s.size,
+      height: s.size,
+      color: s.color,
+      animation: `twinkle ${s.dur} ${s.delay} ease-in-out infinite`,
+      fontSize: s.size,
+      lineHeight: 1,
+      userSelect: 'none',
+      zIndex: 10,
+      pointerEvents: 'none',
           }}
         >
           ✦
