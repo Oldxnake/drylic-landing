@@ -48,10 +48,13 @@ export default function Hero() {
       })
     }
 
-    window.addEventListener(
-      'mousemove',
-      handleMouseMove
-    )
+    // desktop only mouse parallax
+    if (window.innerWidth >= 1024) {
+      window.addEventListener(
+        'mousemove',
+        handleMouseMove
+      )
+    }
 
     window.addEventListener(
       'scroll',
@@ -59,10 +62,12 @@ export default function Hero() {
     )
 
     return () => {
-      window.removeEventListener(
-        'mousemove',
-        handleMouseMove
-      )
+      if (window.innerWidth >= 1024) {
+        window.removeEventListener(
+          'mousemove',
+          handleMouseMove
+        )
+      }
 
       window.removeEventListener(
         'scroll',
@@ -75,9 +80,9 @@ export default function Hero() {
     <section
       id="inicio"
       className="
-        relative overflow-hidden
-        px-4 pt-28 pb-16
-        sm:px-6
+        relative overflow-x-hidden
+        px-4 pt-24 pb-14
+        sm:px-6 sm:pt-28 sm:pb-16
         md:px-10 md:pt-36 md:pb-24
         lg:px-24 lg:pt-40 lg:pb-28
       "
@@ -106,12 +111,16 @@ export default function Hero() {
       <div
         ref={heroRef}
         className="
-          relative z-10 mx-auto max-w-[1550px]
-          overflow-hidden rounded-[34px]
+          relative z-10 mx-auto
+          w-full max-w-[1550px]
+          min-w-0
+          overflow-hidden
+          rounded-[32px]
           border border-white/60
           bg-white/68
           shadow-[0_50px_140px_rgba(39,76,119,0.08)]
           backdrop-blur-[22px]
+
           lg:rounded-[48px]
 
           animate-[heroIn_1.2s_cubic-bezier(0.16,1,0.3,1)_forwards]
@@ -119,17 +128,30 @@ export default function Hero() {
           transition-transform duration-300
         "
       >
-        <div className="grid items-center gap-14 px-5 py-8 sm:px-7 md:px-12 md:py-12 lg:grid-cols-[1fr_1.15fr] lg:gap-24 lg:px-24 lg:py-24">
+        <div
+          className="
+            grid items-center
+            gap-10
+            px-4 py-8
 
+            sm:px-7 sm:py-10
+            md:px-12 md:py-12
+
+            lg:grid-cols-[1fr_1.15fr]
+            lg:gap-24
+            lg:px-24 lg:py-24
+          "
+        >
           {/* LEFT */}
-          <div className="max-w-[610px] text-center lg:text-left">
+          <div className="mx-auto max-w-[610px] text-center lg:mx-0 lg:text-left">
 
             <div
               className="
-                mb-8 inline-flex items-center gap-3
+                mb-6 inline-flex items-center gap-3
                 rounded-full border border-[#D9E9F8]
                 bg-white/75 px-5 py-2.5
                 shadow-sm backdrop-blur-sm
+
                 animate-[fadeUp_1s_ease-out_0.1s_forwards]
                 opacity-0 translate-y-3
               "
@@ -143,11 +165,14 @@ export default function Hero() {
 
             <h1
               className="
-                text-[3.3rem]
-                leading-[0.9]
-                tracking-[-0.07em]
-                font-extralight text-drylic-navy
-                sm:text-[4.4rem]
+                text-[2.85rem]
+                leading-[0.94]
+                tracking-[-0.065em]
+                font-extralight
+                text-drylic-navy
+                break-words
+
+                sm:text-[4rem]
                 md:text-[5.4rem]
                 lg:text-[7.5rem]
                 lg:leading-[0.86]
@@ -165,12 +190,19 @@ export default function Hero() {
 
             <p
               className="
-                mx-auto mt-7 max-w-[560px]
-                text-[1.02rem] leading-[1.8]
-                text-[#6F8092] font-light
-                sm:text-[1.12rem]
+                mx-auto mt-6
+                max-w-[560px]
+
+                text-[1rem]
+                leading-[1.8]
+                font-light
+                text-[#6F8092]
+
+                sm:text-[1.08rem]
                 md:text-[1.18rem]
-                lg:mx-0 lg:mt-10
+
+                lg:mx-0
+                lg:mt-10
                 lg:text-[1.28rem]
                 lg:leading-[1.9]
 
@@ -184,43 +216,55 @@ export default function Hero() {
 
             <div
               className="
-                mt-8 flex items-center justify-center gap-4
+                mt-7 flex items-center justify-center gap-4
                 lg:mt-10 lg:justify-start
               "
             >
-              <div className="h-[1px] w-12 bg-[#C7D8EA] sm:w-16" />
+              <div className="h-[1px] w-10 bg-[#C7D8EA] sm:w-16" />
 
               <p className="text-[0.72rem] uppercase tracking-[0.18em] text-[#8A9AAF] sm:text-[0.82rem]">
                 Premium baby care
               </p>
             </div>
 
-            <div className="mt-8 lg:mt-10">
+            <div className="mt-7 lg:mt-10">
               <EmailSignup />
             </div>
 
-            <p className="mt-5 text-[0.85rem] font-light text-[#97A7B7] sm:text-[0.92rem]">
+            <p className="mt-5 text-[0.82rem] font-light text-[#97A7B7] sm:text-[0.92rem]">
               Diseñado para noches más tranquilas.
               Hecho con cuidado.
             </p>
           </div>
 
           {/* RIGHT */}
-          <div className="relative flex min-h-[320px] items-center justify-center sm:min-h-[420px] md:min-h-[520px] lg:min-h-[680px]">
+          <div
+            className="
+              relative flex
+              min-h-[260px]
+              w-full min-w-0
+              items-center justify-center
 
+              sm:min-h-[420px]
+              md:min-h-[520px]
+              lg:min-h-[680px]
+            "
+          >
             {/* PREMIUM GLOW */}
             <div
               ref={glowRef}
               className="
                 absolute
-                h-[260px] w-[260px]
+                h-[220px] w-[220px]
                 rounded-full
                 bg-[#DCEEFF]/55
-                blur-[70px]
+                blur-[60px]
 
                 sm:h-[380px] sm:w-[380px]
                 md:h-[480px] md:w-[480px]
-                lg:h-[620px] lg:w-[620px]
+
+                lg:h-[620px]
+                lg:w-[620px]
                 lg:blur-[110px]
 
                 animate-[premiumGlow_10s_ease-in-out_infinite]
@@ -231,8 +275,15 @@ export default function Hero() {
             <div
               ref={cardRef}
               className="
-                relative w-full max-w-[700px]
-                overflow-hidden rounded-[30px]
+                relative
+                w-full
+                max-w-full
+                min-w-0
+
+                sm:max-w-[700px]
+
+                overflow-hidden
+                rounded-[30px]
                 border border-white/60
                 bg-gradient-to-br
                 from-[#FAFCFF]
@@ -263,14 +314,12 @@ export default function Hero() {
         @keyframes heroIn {
           from {
             opacity: 0;
-            transform: translateY(30px)
-              scale(0.98);
+            transform: translateY(30px) scale(0.98);
             filter: blur(10px);
           }
           to {
             opacity: 1;
-            transform: translateY(0)
-              scale(1);
+            transform: translateY(0) scale(1);
             filter: blur(0);
           }
         }
