@@ -55,7 +55,7 @@ export default function EmailSignup() {
   }
 
   return (
-    <div className="w-full max-w-[460px]">
+    <div className="w-full max-w-full sm:max-w-[460px]">
 
       <span className="mb-3 block text-[0.72rem] font-medium tracking-[0.08em] text-drylic-slate">
         Sé de los primeros en conocer Drylic®
@@ -63,7 +63,8 @@ export default function EmailSignup() {
 
       <div
         className={`
-          group relative flex overflow-hidden rounded-[28px]
+          group relative overflow-hidden
+          rounded-[28px]
           border backdrop-blur-xl
           transition-all duration-500
           shadow-[0_12px_40px_rgba(39,76,119,0.08)]
@@ -77,59 +78,77 @@ export default function EmailSignup() {
           }
         `}
       >
-        <input
-          type="email"
-          value={email}
-          disabled={loading || status === 'success'}
-          onChange={(e) => setEmail(e.target.value)}
-          onKeyDown={(e) =>
-            e.key === 'Enter' && !loading && handleSubmit()
-          }
-          placeholder={
-            status === 'success'
-              ? '✨ Ya estás dentro'
-              : loading
-              ? 'Enviando...'
-              : 'tu@correo.com'
-          }
-          className="
-            flex-1 bg-transparent px-6 py-[1.05rem]
-            text-[0.96rem] font-light
-            text-[#274C77]
-            outline-none
-            placeholder:text-[#A7B3C2]
-          "
-        />
+        {/* MOBILE = STACK / DESKTOP = INLINE */}
+        <div className="flex flex-col sm:flex-row">
 
-        <button
-          onClick={handleSubmit}
-          disabled={loading || status === 'success'}
-          className={`
-            relative flex min-w-[150px] items-center justify-center
-            px-7 text-[0.92rem]
-            font-medium tracking-[-0.02em]
-            transition-all duration-500
-
-            ${
-              status === 'success'
-                ? 'bg-[#2C7A56] text-white'
-                : loading
-                ? 'bg-[#355A84] text-white'
-                : 'bg-[#274C77] text-white hover:bg-[#1F3F66]'
+          <input
+            type="email"
+            value={email}
+            disabled={loading || status === 'success'}
+            onChange={(e) => setEmail(e.target.value)}
+            onKeyDown={(e) =>
+              e.key === 'Enter' && !loading && handleSubmit()
             }
-          `}
-        >
-          {loading ? (
-            <div className="flex items-center gap-2">
-              <div className="h-4 w-4 animate-spin rounded-full border border-white/25 border-t-white" />
-              Enviando
-            </div>
-          ) : status === 'success' ? (
-            '✓ Listo'
-          ) : (
-            'Notificarme'
-          )}
-        </button>
+            placeholder={
+              status === 'success'
+                ? '✨ Ya estás dentro'
+                : loading
+                ? 'Enviando...'
+                : 'tu@correo.com'
+            }
+            className="
+              w-full min-w-0
+              bg-transparent
+              px-6 py-[1.05rem]
+              text-[0.96rem] font-light
+              text-[#274C77]
+              outline-none
+              placeholder:text-[#A7B3C2]
+
+              sm:flex-1
+            "
+          />
+
+          <button
+            onClick={handleSubmit}
+            disabled={loading || status === 'success'}
+            className={`
+              relative flex
+              h-[62px]
+              w-full
+              items-center justify-center
+
+              text-[0.92rem]
+              font-medium
+              tracking-[-0.02em]
+
+              transition-all duration-500
+
+              sm:h-auto
+              sm:w-auto
+              sm:min-w-[170px]
+
+              ${
+                status === 'success'
+                  ? 'bg-[#2C7A56] text-white'
+                  : loading
+                  ? 'bg-[#355A84] text-white'
+                  : 'bg-[#274C77] text-white hover:bg-[#1F3F66]'
+              }
+            `}
+          >
+            {loading ? (
+              <div className="flex items-center gap-2">
+                <div className="h-4 w-4 animate-spin rounded-full border border-white/25 border-t-white" />
+                Enviando
+              </div>
+            ) : status === 'success' ? (
+              '✓ Listo'
+            ) : (
+              'Notificarme'
+            )}
+          </button>
+        </div>
 
         {/* glow premium */}
         <div className="pointer-events-none absolute inset-0 opacity-0 transition duration-700 group-hover:opacity-100">
