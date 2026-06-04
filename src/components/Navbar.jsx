@@ -2,20 +2,31 @@ import { useEffect, useState } from 'react'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
-  const [activeSection, setActiveSection] = useState('inicio')
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [activeSection, setActiveSection] =
+    useState('inicio')
+
+  const [menuOpen, setMenuOpen] =
+    useState(false)
 
   const navItems = [
-    { label: 'Inicio', href: '#inicio', id: 'inicio' },
+    {
+      label: 'Inicio',
+      href: '#inicio',
+      id: 'inicio',
+    },
     {
       label: 'Nuestra Filosofía',
       href: '#filosofia',
       id: 'filosofia',
     },
-    { label: 'Contacto', href: '#contacto', id: 'contacto' },
+    {
+      label: 'Contacto',
+      href: '#contacto',
+      id: 'contacto',
+    },
   ]
 
-  // Scroll navbar + active section
+  // scroll navbar + active section
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10)
@@ -24,13 +35,15 @@ export default function Navbar() {
         document.getElementById(item.id)
       )
 
-      const scrollPosition = window.scrollY + 180
+      const scrollPosition =
+        window.scrollY + 180
 
       for (const section of sections) {
         if (!section) continue
 
         const top = section.offsetTop
-        const height = section.offsetHeight
+        const height =
+          section.offsetHeight
 
         if (
           scrollPosition >= top &&
@@ -41,17 +54,37 @@ export default function Navbar() {
       }
     }
 
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener(
+      'scroll',
+      handleScroll
+    )
 
     handleScroll()
 
     return () =>
-      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener(
+        'scroll',
+        handleScroll
+      )
   }, [])
 
-  // Smooth scroll
-  const handleNavClick = (href, id) => {
-    const target = document.querySelector(href)
+  // body scroll lock
+  useEffect(() => {
+    document.body.style.overflow =
+      menuOpen ? 'hidden' : 'auto'
+
+    return () => {
+      document.body.style.overflow =
+        'auto'
+    }
+  }, [menuOpen])
+
+  const handleNavClick = (
+    href,
+    id
+  ) => {
+    const target =
+      document.querySelector(href)
 
     if (target) {
       target.scrollIntoView({
@@ -66,20 +99,25 @@ export default function Navbar() {
 
   return (
     <>
+      {/* NAVBAR */}
       <nav
         className={`
-          fixed top-0 left-0 right-0 z-50
+          fixed top-0 left-0 right-0
+          z-50
+
           flex items-center justify-between
 
-          px-5 sm:px-8 lg:px-16
+          px-4
+          sm:px-7
+          lg:px-16
 
           transition-all duration-700
           ease-[cubic-bezier(0.16,1,0.3,1)]
 
           ${
             scrolled
-              ? 'py-3 bg-white/85 backdrop-blur-2xl shadow-[0_12px_40px_rgba(0,0,0,0.06)]'
-              : 'py-5 bg-white/60 backdrop-blur-xl'
+              ? 'py-2 bg-white/82 backdrop-blur-[28px] shadow-[0_12px_40px_rgba(39,76,119,0.08)]'
+              : 'py-3 bg-white/55 backdrop-blur-xl'
           }
 
           border-b border-[rgba(125,138,151,0.10)]
@@ -88,19 +126,27 @@ export default function Navbar() {
         {/* LOGO */}
         <button
           onClick={() =>
-            handleNavClick('#inicio', 'inicio')
+            handleNavClick(
+              '#inicio',
+              'inicio'
+            )
           }
-          className="relative group flex items-center"
+          className="
+            relative group
+            flex items-center
+            shrink-0
+          "
         >
           <img
             src="/drylic-logo.png"
             alt="Drylic"
             className="
-              h-[76px]
-              sm:h-[92px]
-              md:h-[108px]
-              lg:h-[122px]
+              h-[62px]
               w-auto object-contain
+
+              sm:h-[78px]
+              md:h-[96px]
+              lg:h-[118px]
 
               transition-all duration-700
               ease-[cubic-bezier(0.16,1,0.3,1)]
@@ -110,14 +156,16 @@ export default function Navbar() {
             "
           />
 
-          {/* glow */}
           <div
             className="
               absolute inset-0
-              opacity-0 group-hover:opacity-100
-              transition duration-700
+              opacity-0
               blur-2xl
+
               bg-blue-200/20
+
+              transition duration-700
+              group-hover:opacity-100
             "
           />
         </button>
@@ -160,15 +208,15 @@ export default function Navbar() {
                 >
                   {item.label}
 
-                  {/* underline animated */}
                   <span
                     className={`
-                      absolute left-0 -bottom-2
+                      absolute left-0
+                      -bottom-2
+
                       h-[1px]
                       bg-[#274C77]
 
                       transition-all duration-500
-                      ease-[cubic-bezier(0.16,1,0.3,1)]
 
                       ${
                         isActive
@@ -178,12 +226,10 @@ export default function Navbar() {
                     `}
                   />
 
-                  {/* active glow */}
                   {isActive && (
                     <span
                       className="
-                        absolute
-                        inset-0
+                        absolute inset-0
                         blur-xl
                         opacity-20
                         bg-blue-300
@@ -205,22 +251,23 @@ export default function Navbar() {
             md:hidden
 
             relative
-            flex items-center justify-center
+            flex items-center
+            justify-center
 
-            h-11 w-11
+            h-12 w-12
+            shrink-0
 
-            rounded-2xl
+            rounded-[20px]
+
             border border-[#E4ECF4]
-
-            bg-white/70
+            bg-white/72
             backdrop-blur-xl
 
-            shadow-sm
+            shadow-[0_10px_30px_rgba(39,76,119,0.08)]
 
             transition-all duration-300
 
             active:scale-90
-            hover:shadow-[0_10px_30px_rgba(39,76,119,0.12)]
           "
           aria-label="Menu"
         >
@@ -281,20 +328,48 @@ export default function Navbar() {
         </button>
       </nav>
 
+      {/* OVERLAY */}
+      <div
+        className={`
+          md:hidden
+          fixed inset-0
+          z-40
+
+          bg-[#F7FBFF]/60
+          backdrop-blur-[18px]
+
+          transition-all duration-500
+
+          ${
+            menuOpen
+              ? 'opacity-100 pointer-events-auto'
+              : 'opacity-0 pointer-events-none'
+          }
+        `}
+        onClick={() =>
+          setMenuOpen(false)
+        }
+      />
+
       {/* MOBILE MENU */}
       <div
         className={`
           md:hidden
-          fixed top-[92px]
-          left-4 right-4 z-40
 
-          rounded-[32px]
-          border border-white/50
+          fixed
+          top-[88px]
+          left-4
+          right-4
 
-          bg-white/75
-          backdrop-blur-2xl
+          z-50
 
-          shadow-[0_30px_80px_rgba(39,76,119,0.12)]
+          rounded-[34px]
+          border border-white/60
+
+          bg-white/78
+          backdrop-blur-[32px]
+
+          shadow-[0_40px_100px_rgba(39,76,119,0.12)]
 
           overflow-hidden
 
@@ -303,8 +378,8 @@ export default function Navbar() {
 
           ${
             menuOpen
-              ? 'opacity-100 translate-y-0 pointer-events-auto'
-              : 'opacity-0 -translate-y-4 pointer-events-none'
+              ? 'opacity-100 translate-y-0 scale-100'
+              : 'opacity-0 -translate-y-4 scale-[0.98] pointer-events-none'
           }
         `}
       >
@@ -323,20 +398,20 @@ export default function Navbar() {
                   )
                 }
                 className={`
-                  rounded-2xl
+                  rounded-[22px]
                   px-5 py-4
 
                   text-left
-                  text-[0.95rem]
+                  text-[0.96rem]
 
                   font-light
-                  tracking-[0.05em]
+                  tracking-[0.04em]
 
                   transition-all duration-300
 
                   ${
                     isActive
-                      ? 'bg-[#F4F8FC] text-[#274C77]'
+                      ? 'bg-[#F3F8FD] text-[#274C77]'
                       : 'text-[#5E738A] hover:bg-[#F4F8FC]'
                   }
                 `}
