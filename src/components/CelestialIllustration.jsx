@@ -113,13 +113,14 @@ export default function CelestialIllustration() {
       {/* floating card */}
       <div className="absolute bottom-8 left-8 rounded-[34px] bg-white/88 backdrop-blur-md px-7 py-6 shadow-[0_20px_50px_rgba(39,76,119,0.15)] border border-white/50">
         <p className="uppercase tracking-[0.18em] text-[12px] text-[#7D8A97]">
-          Descanso tranquilo
+          Porque descansar importa
         </p>
         <h3 className="mt-2 text-[32px] leading-none font-light text-[#274C77]">
-          Dulces sueños
+          Noches más suaves
         </h3>
         <p className="mt-3 text-[15px] leading-7 text-[#6F8092] max-w-[280px]">
-          Diseñado para noches más tranquilas y mañanas más felices.
+          Cuando ellos descansan mejor,
+  todo en casa se siente un poco más tranquilo.
         </p>
       </div>
     </div>
