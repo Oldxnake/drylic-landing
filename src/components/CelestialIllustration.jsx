@@ -116,11 +116,11 @@ export default function CelestialIllustration() {
           Porque descansar importa
         </p>
         <h3 className="mt-2 text-[32px] leading-none font-light text-[#274C77]">
-          Noches más suaves
+          Noches más suaves.
         </h3>
         <p className="mt-3 text-[15px] leading-7 text-[#6F8092] max-w-[280px]">
           Cuando ellos descansan mejor,
-  todo en casa se siente un poco más tranquilo.
+todo en casa se siente un poco más tranquilo.
         </p>
       </div>
     </div>
