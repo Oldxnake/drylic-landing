@@ -58,7 +58,7 @@ export default function EmailSignup() {
     <div className="w-full max-w-full sm:max-w-[460px]">
 
       <span className="mb-3 block text-[0.72rem] font-medium tracking-[0.08em] text-drylic-slate">
-        Agrega tu correo electrónico debajo y sé parte Drylic®
+        Sé de los primeros en acompañarnos en este nuevo comienzo.
       </span>
 
       <div

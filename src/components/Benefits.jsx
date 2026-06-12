@@ -7,19 +7,19 @@ export default function Benefits() {
       number: '01',
       title: 'Dormir con tranquilidad',
       text:
-        'Protección pensada para acompañar noches más tranquilas, sin interrupciones innecesarias.',
+        'Protección pensada para acompañar noches más suaves, para que el descanso se sienta un poco más ligero.',
     },
     {
       number: '02',
-      title: 'Despertar sin preocupaciones',
+      title: 'Despertar con calma',
       text:
-        'Porque una mejor noche puede significar mañanas más felices para bebés y padres.',
+        'Porque una mejor noche puede transformar la forma en que empieza el día.',
     },
     {
       number: '03',
       title: 'Suavidad que acompaña',
       text:
-        'Diseñado para sentirse delicado, cómodo y confiable en los momentos que más importan.',
+        'Pensado para sentirse delicado, cómodo y confiable cuando más importa.',
     },
   ]
 
@@ -183,9 +183,7 @@ export default function Benefits() {
               lg:text-[1.1rem]
             "
           >
-            Creado para acompañar
-            momentos que importan
-            de verdad.
+            Creado para acompañar los pequeños momentos que terminan significándolo todo.
           </p>
         </div>
 

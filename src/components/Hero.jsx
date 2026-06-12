@@ -210,8 +210,8 @@ export default function Hero() {
                 opacity-0 translate-y-5
               "
             >
-              Diseñados para noches más tranquilas,
-              porque el descanso también es amor.
+              Dormir bien no siempre es perfecto.
+              Hay noches largas, y otras que poco a poco, empiezan a sentirse diferentes.
             </p>
 
             <div
@@ -232,8 +232,8 @@ export default function Hero() {
             </div>
 
             <p className="mt-5 text-[0.82rem] font-light text-[#97A7B7] sm:text-[0.92rem]">
-              Diseñado para noches más tranquilas.
-              Hecho con cuidado.
+              Diseñado con cuidado.
+Pensado para el descanso.
             </p>
           </div>
 
