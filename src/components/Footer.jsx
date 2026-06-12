@@ -124,8 +124,7 @@ export default function Footer() {
                 lg:leading-[1.9]
               "
             >
-              Sé de los primeros en conocer Drylic®
-              y acompáñanos en este nuevo comienzo.
+              Poco a poco, una mejor noche también puede cambiar cómo empieza el día.
             </p>
 
             <div className="mt-7 lg:mt-10">

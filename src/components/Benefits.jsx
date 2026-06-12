@@ -161,9 +161,9 @@ export default function Benefits() {
           >
             Más calma.
             <br />
-            Más descanso.
+            Menos interrupciones.
             <br />
-            Más mañanas felices.
+            Un mejor comienzo para el día.
           </h2>
 
           <p
