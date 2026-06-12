@@ -15,7 +15,7 @@ export default function Navbar() {
       id: 'inicio',
     },
     {
-      label: 'Nuestra Filosofía',
+      label: 'Nuestro Enfoque',
       href: '#filosofia',
       id: 'filosofia',
     },
